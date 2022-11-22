@@ -1,27 +1,53 @@
 //project
 const grid = document.querySelector("#grid");
+const submit_input = document.querySelector("#submit");
 
-function makedivs(grid){
-    for (let row = 0; row < 256; row++){
-        const cell = document.createElement("div"); 
-        cell.setAttribute("style", "display:inline-block; width:50px; height:50px; border:solid");
-        grid.appendChild(cell)
-    };
+var size_constant = 16;
+
+function makedivs(grid, size){
+        const value = size*size
+        for (let totalsize = 0; totalsize < value; totalsize++){
+            const cell = document.createElement("div"); 
+            cell.setAttribute("style", "display:inline-grid");
+            cell.style.height = (800/size) + "px";
+            cell.style.width = (800/size) + "px";
+            grid.appendChild(cell)
+            cell.addEventListener("mouseover", function mousehandler(){
+                cell.style.background="black";
+            });
+        };       
 }
 
-makedivs(grid)
+function reset(){
+    const size_test = document.querySelector("#size").value;
+    makedivs(grid, size_test)
+    const size_reset = document.getElementById("size");
+    size_reset.value = ''
 
-// function grids(cells){
-//     let row = 1;
-//     let column = 1;
-//     for (let i = 0; i<=15; i++){
-//         cells.style.gridRow="2 / span 2";
-//         cells.setAttribute("style", "display:grid; width:50px; height:50px; border:solid");
-//         row += 1;
-//         column += 1;
-//         grid.appendChild(cells);
+}
 
-//     }
-// }
-
-//grids(cell)
+function makenewgrid(){
+    submit_input.addEventListener("click", function(e){    
+        while(grid.firstChild){
+            grid.removeChild(grid.firstChild)
+        }
+        const size_check = parseInt(document.querySelector("#size").value);
+        console.log(Number.isNaN(size_check));
+        if (Number.isNaN(size_check)){
+            alert("Please enter in a numerical value")
+            makedivs(grid, size_constant);
+            const size_reset = document.getElementById("size");
+            size_reset.value = ''
+        }else if ((size_check*size_check)>10000){
+            alert("please check your height and width are the same and are no bigger then 100x100");
+            makedivs(grid, size_constant);
+            const size_reset = document.getElementById("size");
+            size_reset.value = ''
+        }else{
+            reset()
+        }
+       
+                        }); 
+}
+makedivs(grid, size_constant);
+makenewgrid()
