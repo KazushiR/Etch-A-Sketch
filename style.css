@@ -4,10 +4,47 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: lightskyblue;
+
 }
 
+#grid{
+    border:solid;
+    border-width: 15px;
+    border-color:black;
+    height:800px;
+    max-width: 800px;
+    font-size:0;
+    border-radius: 30px;
+    background-color: gray;
+}
 
 .container{
-    height:192px;
-    width: 900px;
+    display: flex; 
+    margin:50px;
+    max-height:800px;
+
+}
+
+.center-container{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction:column;
+    background-color: lightgrey;
+    padding:30px;
+    margin:50px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+#submit{
+    margin:50px;
+}
+
+.text-align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
